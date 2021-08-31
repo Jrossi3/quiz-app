@@ -17,44 +17,44 @@ var quizData = [
         correctAnswer: 'a'
     },
     {
-        question: "What is my name?", 
+        question: "How old am I?", 
         answerChoices: {
-            a: 'Jason', 
-            b: 'Dino', 
-            c: 'Brandon', 
-            d: 'Luke', 
+            a: '22', 
+            b: '21', 
+            c: '20', 
+            d: '19', 
         },
-        correctAnswer: 'a'
+        correctAnswer: 'c'
     },
     {
-        question: "What is my", 
+        question: "What is my birthday", 
         answerChoices: {
-            a: 'Jason', 
-            b: 'Dino', 
-            c: 'Brandon', 
-            d: 'Luke', 
+            a: 'January 21', 
+            b: 'February 21', 
+            c: 'January 12',
+            d: 'February 12', 
         },
-        correctAnswer: 'a'
+        correctAnswer: 'd'
     },
     {
-        question: "What is my name?", 
+        question: "What is my dad's name", 
         answerChoices: {
             a: 'Jason', 
             b: 'Dino', 
             c: 'Brandon', 
             d: 'Luke', 
         },
-        correctAnswer: 'a'
+        correctAnswer: 'b'
     },
     {
-        question: "What is my name?", 
+        question: "What is my mom's name?", 
         answerChoices: {
-            a: 'Jason', 
-            b: 'Dino', 
-            c: 'Brandon', 
-            d: 'Luke', 
+            a: 'Trish', 
+            b: 'Molly', 
+            c: 'Jennifer', 
+            d: 'Gayle', 
         },
-        correctAnswer: 'a'
+        correctAnswer: 'c'
     }
 ];
 
