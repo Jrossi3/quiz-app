@@ -1,11 +1,12 @@
 var quizContainer = document.getElementById('quizQuestions');
+var quizCallElement = document.getElementById('quizCall');
 var answerChoiceA = document.getElementById('a');
 var answerChoiceB = document.getElementById('b');
 var answerChoiceC = document.getElementById('c');
 var answerChoiceD = document.getElementById('d');
 var questionCounter = 0;
 
-var quizData = [
+const quizData = [
     {
         question: "What is my name?", 
         answerChoices: {
@@ -58,39 +59,67 @@ var quizData = [
     }
 ];
 
+var nextQuestionButton = document.createElement("button");
+var previousQuestionButton = document.createElement("button");
+var submitButton = document.createElement("button");
+
+// submitButton.innerHTML;
+// document.body.appendChild(submitButton);
+
+
+function removeButton(quizCallElement) {
+    var quizCall = document.getElementById('quizCall');
+    quizCall.parentNode.removeChild(quizCall);
+}
+
 function quizCall() {
-    //Starts the quiz and keeps track of the quizData array
-    var quizDataQuestions;
-    quizDataQuestions = quizData[questionCounter];
-    quizContainer.innerHTML = quizData.question;
-    console.log(quizData[questionCounter], questionCounter);
+    //Starts the quiz and displays the first question
+    quizContainer.innerHTML = quizData[questionCounter].question;
+    
+    //Increment the question counter
+    questionCounter++;
+
+    //Create the next and previous question buttons
+    nextQuestionButton.innerHTML;
+    document.body.appendChild(nextQuestionButton);
+    previousQuestionButton.innerHTML;
+    document.body.appendChild(previousQuestionButton);
+
+    //Remove the "start quiz" button
+    removeButton(quizCallElement);
 }
 
 function nextQuestion() {
     //goes to the next question
-    questionCounter++;
     if (questionCounter < quizData.length) {
-        quizDataQuestions = quizData[questionCounter];
-        quizContainer.innerHTML = quizData[questionCounter];
-        quizContainer.innerHTML = quizData[questionCounter];
-        quizContainer.innerHTML = quizData[questionCounter];
-        quizContainer.innerHTML = quizData[questionCounter];
-        console.log(quizData[questionCounter], questionCounter);
+        //Increment the question counter
+        questionCounter++;
+
+        //Displays the question of the quiz
+        quizContainer.innerHTML = quizData[questionCounter].question;
     }
 }
 
 function previousQuestion() {
     //goes back to the previous question
-    counter--;
-    if (questionCounter < quizData.length) {
-        quizDataQuestions = quizData[counter];
-        quizContainer.innerHTML = quizData.question;
-        console.log(quizData[counter], counter);
+    if (questionCounter == quizData.length) {
+        //Decrements the counter
+        questionCounter--;
+    }
+    if (questionCounter < quizData.length && questionCounter > 0) {
+        //Decrements the counter
+        questionCounter--;
+
+        //Returns the previous question, but not the answer choices
+        quizContainer.innerHTML = quizData[questionCounter].question;
     }
 }
 
 function submit() {
     //submit the quiz using this
+    if (questionCounter == quizData.length) {
+        
+    }
 }
 
 function returnGrade() {

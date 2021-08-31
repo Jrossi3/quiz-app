@@ -25,10 +25,10 @@ ul {
     
 }
 
-#nextQuestion {
+#nextQuestionButton {
     float: right;
 }
 
-#previousQuestion {
+#previousQuestionButton {
     float: left;
 }
