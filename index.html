@@ -7,11 +7,14 @@
             Sup
         </title>
         <link rel="stylesheet" href="style.css"/>
-        <script src = "script.js" defer></script>
+        <script src = "script.js" defer></script>  
+
+        </script>
     </head>
     <body>
         <div class="quiz">
-            <h1>Questions go here</h1>
+            <p id ="quizQuestions">Questions go here</p>
+            <button onclick=quizCall() id = "quizCall">Start Quiz</button>
                 <ul>
                     <li>
                         <input type="radio" id="a" name="answer">
@@ -30,7 +33,7 @@
                         <label for="d">Answer</label>
                     </li>
                 </ul>
-                <button onclick=nextQuestion() id="previousQuestion">Previous Question</button>
+                <button onclick=previousQuestion() id="previousQuestion">Previous Question</button>
                 <button onclick=nextQuestion() id="nextQuestion">Next Question</button>
         </div>
     </body>
