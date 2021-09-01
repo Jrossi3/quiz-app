@@ -4,18 +4,19 @@ var answerChoiceA = document.getElementById('a');
 var answerChoiceB = document.getElementById('b');
 var answerChoiceC = document.getElementById('c');
 var answerChoiceD = document.getElementById('d');
+var quizClass = document.getElementById('quizzer')
 var questionCounter = 0;
 
 const quizData = [
     {
         question: "What is my name?", 
         answerChoices: {
-            a: 'Jason', 
-            b: 'Dino', 
-            c: 'Brandon', 
-            d: 'Luke', 
+            a: "Jason", 
+            b: "Dino", 
+            c: "Brandon", 
+            d: "Luke", 
         },
-        correctAnswer: 'a'
+        correctAnswer: "a"
     },
     {
         question: "How old am I?", 
@@ -66,8 +67,7 @@ var submitButton = document.createElement("button");
 // submitButton.innerHTML;
 // document.body.appendChild(submitButton);
 
-
-function removeButton(quizCallElement) {
+function removeButton(quizCall) {
     var quizCall = document.getElementById('quizCall');
     quizCall.parentNode.removeChild(quizCall);
 }
@@ -75,15 +75,20 @@ function removeButton(quizCallElement) {
 function quizCall() {
     //Starts the quiz and displays the first question
     quizContainer.innerHTML = quizData[questionCounter].question;
-    
+    answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
+    answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
+    answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
+    answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
+
     //Increment the question counter
     questionCounter++;
 
     //Create the next and previous question buttons
-    nextQuestionButton.innerHTML;
-    document.body.appendChild(nextQuestionButton);
-    previousQuestionButton.innerHTML;
-    document.body.appendChild(previousQuestionButton);
+    
+    previousQuestionButton.innerHTML = "Previous Question";
+    quizClass.appendChild(previousQuestionButton);
+    nextQuestionButton.innerHTML = "Next Question";
+    quizClass.appendChild(nextQuestionButton);
 
     //Remove the "start quiz" button
     removeButton(quizCallElement);
@@ -97,6 +102,10 @@ function nextQuestion() {
 
         //Displays the question of the quiz
         quizContainer.innerHTML = quizData[questionCounter].question;
+        answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
+        answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
+        answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
+        answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
 }
 
@@ -110,8 +119,12 @@ function previousQuestion() {
         //Decrements the counter
         questionCounter--;
 
-        //Returns the previous question, but not the answer choices
+        //Returns the previous question
         quizContainer.innerHTML = quizData[questionCounter].question;
+        answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
+        answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
+        answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
+        answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
 }
 
