@@ -4,8 +4,8 @@ var answerChoiceA = document.getElementById('a');
 var answerChoiceB = document.getElementById('b');
 var answerChoiceC = document.getElementById('c');
 var answerChoiceD = document.getElementById('d');
-var quizClass = document.getElementById('quizzer')
 var questionCounter = 0;
+var quizStarter = 0;
 
 const quizData = [
     {
@@ -60,17 +60,8 @@ const quizData = [
     }
 ];
 
-// var nextQuestionButton = document.createElement("BUTTON");
-// var previousQuestionButton = document.createElement("BUTTON");
-// var submitButton = document.createElement("BUTTON");
-
 // submitButton.innerHTML;
 // document.body.appendChild(submitButton);
-
-function removeButton(quizCall) {
-    var quizCall = document.getElementById('quizCall');
-    quizCall.parentNode.removeChild(quizCall);
-}
 
 function quizCall() {
     //Starts the quiz and displays the first question
@@ -80,31 +71,32 @@ function quizCall() {
     answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
     answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     //Remove the "start quiz" button
-    // removeButton(quizCallElement);
     document.location='quizQuestions.html';
-
-    //Increment the question counter
-    questionCounter++;
-
-    //Create the next and previous question buttons
-    // previousQuestionButton.innerHTML = "Previous Question";
-    // quizClass.appendChild(previousQuestionButton);
-    // nextQuestionButton.innerHTML = "Next Question";
-    // quizClass.appendChild(nextQuestionButton);
-
-    
+    quizStarter++;
+    console.log(questionCounter);
 }
 
-// previousQuestionButton.onclick = previousQuestion();
-// nextQuestionButton.onclick = nextQuestion();
+function quizCallInitial() {
+    //Starts the quiz and displays the first question
+    quizContainer.innerHTML = quizData[questionCounter].question;
+    answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
+    answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
+    answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
+    answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
+    questionCounter++;
+    console.log(questionCounter);
+}
+if (quizStarter > 0){
+    quizCallInitial();
+    quizStart = 0;
+}
 
-
+//Working
 function nextQuestion() {
     //goes to the next question
-    if (questionCounter < quizData.length && questionCounter > 0) {
-        //Increment the question counter
+    
+    if (questionCounter < quizData.length) {
         questionCounter++;
-
         //Displays the question of the quiz
         quizContainer.innerHTML = quizData[questionCounter].question;
         answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
@@ -112,10 +104,11 @@ function nextQuestion() {
         answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
         answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
+    console.log(questionCounter);
 }
 
 
-
+//Working
 function previousQuestion() {
     //goes back to the previous question
     if (questionCounter == quizData.length) {
@@ -125,13 +118,13 @@ function previousQuestion() {
     if (questionCounter < quizData.length && questionCounter > 0) {
         //Decrements the counter
         questionCounter--;
-
         //Returns the previous question
         quizContainer.innerHTML = quizData[questionCounter].question;
         answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
         answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
         answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
         answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
+        console.log(questionCounter);
     }
 }
 
