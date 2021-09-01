@@ -5,7 +5,6 @@ var answerChoiceB = document.getElementById('b');
 var answerChoiceC = document.getElementById('c');
 var answerChoiceD = document.getElementById('d');
 var questionCounter = 0;
-var quizStarter = 0;
 
 const quizData = [
     {
@@ -65,15 +64,13 @@ const quizData = [
 
 function quizCall() {
     //Starts the quiz and displays the first question
-    quizContainer.innerHTML = quizData[questionCounter].question;
-    answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
-    answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
-    answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
-    answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
-    //Remove the "start quiz" button
     document.location='quizQuestions.html';
-    quizStarter++;
+    quizCallInitial();
     console.log(questionCounter);
+}
+
+function backToStart() {
+    document.location='index.html';
 }
 
 function quizCallInitial() {
@@ -85,10 +82,6 @@ function quizCallInitial() {
     answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     questionCounter++;
     console.log(questionCounter);
-}
-if (quizStarter > 0){
-    quizCallInitial();
-    quizStart = 0;
 }
 
 //Working
