@@ -61,6 +61,10 @@ const quizData = [
 
 // submitButton.innerHTML;
 // document.body.appendChild(submitButton);
+// previousQuestionButton.innerHTML = "Previous Question";
+// quizClass.appendChild(previousQuestionButton);
+// nextQuestionButton.innerHTML = "Next Question";
+// quizClass.appendChild(nextQuestionButton);
 
 function quizCall() {
     //Starts the quiz and displays the first question
@@ -68,6 +72,13 @@ function quizCall() {
     quizCallInitial();
     console.log(questionCounter);
 }
+
+function removeButton() {
+    var element = document.getElementById('nextQuestionButton');
+    element.parentNode.removeChild(element);
+}
+
+quizCallInitial();
 
 function backToStart() {
     document.location='index.html';
@@ -86,8 +97,8 @@ function quizCallInitial() {
 
 //Working
 function nextQuestion() {
-    //goes to the next question
     
+    //goes to the next question
     if (questionCounter < quizData.length) {
         questionCounter++;
         //Displays the question of the quiz
@@ -97,9 +108,11 @@ function nextQuestion() {
         answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
         answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
+    // if (questionCounter == quizData.length - 1) {
+    //     removeButton(nextQuestionButton);
+    // }
     console.log(questionCounter);
 }
-
 
 //Working
 function previousQuestion() {
