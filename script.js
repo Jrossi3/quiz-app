@@ -60,9 +60,9 @@ const quizData = [
     }
 ];
 
-var nextQuestionButton = document.createElement("button");
-var previousQuestionButton = document.createElement("button");
-var submitButton = document.createElement("button");
+// var nextQuestionButton = document.createElement("BUTTON");
+// var previousQuestionButton = document.createElement("BUTTON");
+// var submitButton = document.createElement("BUTTON");
 
 // submitButton.innerHTML;
 // document.body.appendChild(submitButton);
@@ -79,24 +79,29 @@ function quizCall() {
     answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
     answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
     answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
+    //Remove the "start quiz" button
+    // removeButton(quizCallElement);
+    document.location='quizQuestions.html';
 
     //Increment the question counter
     questionCounter++;
 
     //Create the next and previous question buttons
-    
-    previousQuestionButton.innerHTML = "Previous Question";
-    quizClass.appendChild(previousQuestionButton);
-    nextQuestionButton.innerHTML = "Next Question";
-    quizClass.appendChild(nextQuestionButton);
+    // previousQuestionButton.innerHTML = "Previous Question";
+    // quizClass.appendChild(previousQuestionButton);
+    // nextQuestionButton.innerHTML = "Next Question";
+    // quizClass.appendChild(nextQuestionButton);
 
-    //Remove the "start quiz" button
-    removeButton(quizCallElement);
+    
 }
+
+// previousQuestionButton.onclick = previousQuestion();
+// nextQuestionButton.onclick = nextQuestion();
+
 
 function nextQuestion() {
     //goes to the next question
-    if (questionCounter < quizData.length) {
+    if (questionCounter < quizData.length && questionCounter > 0) {
         //Increment the question counter
         questionCounter++;
 
@@ -108,6 +113,8 @@ function nextQuestion() {
         answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
 }
+
+
 
 function previousQuestion() {
     //goes back to the previous question

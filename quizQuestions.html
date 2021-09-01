@@ -13,10 +13,9 @@
         </script>
 
     </head>
-    <body> 
-        <div class="quiz" id = "quizzer">
+    <body>
+        <div class="quiz" id = "quizzer"> 
             <p id ="quizQuestions">Questions go here</p>
-            <button onclick = quizCall() id = "quizCall">Start Quiz</button>
                 <ul>
                     <li>
                         <input type="radio" id="answerChoiceA" name="answer">
@@ -35,6 +34,8 @@
                         <label id="d">Answer</label>
                     </li>
                 </ul>
+                <button onclick = previousQuestion()>Previous Question</button>
+                <button onclick = nextQustion()>Next Question</button>
         </div>
     </body>
 </html>
