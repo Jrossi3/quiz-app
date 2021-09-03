@@ -8,6 +8,11 @@ var answerChoiceD = document.getElementById('d1');
 var quizzerSubmit = document.getElementById('quizzer');
 var submitButton = document.createElement("BUTTON");
 var restartButton = document.createElement("BUTTON");
+var nextQuestionButton = document.createElement("BUTTON");
+var prevQuestionButton = document.createElement("BUTTON");
+submitButton.className = "submitButtonClass";
+nextQuestionButton.className = "nextClass";
+prevQuestionButton.className = "prevClass";
 var questionCounter = 0;
 let totalArray = [];
 var check = true;
@@ -69,13 +74,14 @@ function quizCall() {
     //Starts the quiz and displays the first question
     document.location='quizQuestions.html';
     quizCallInitial();
-    console.log(questionCounter);
 }
 
 function removeButton(h) {
     var element = document.getElementById(h);
     element.parentNode.removeChild(element);
 }
+
+let buttonCreator = 0;
 
 quizCallInitial();
 
@@ -84,6 +90,16 @@ function backToStart() {
 }
 
 function quizCallInitial() {
+    if (buttonCreator == 1) {
+        prevQuestionButton.innerHTML = "Previous Question";
+        quizzerSubmit.appendChild(prevQuestionButton);
+        buttonCreator++;
+    }
+    if (buttonCreator == 0) {
+        nextQuestionButton.innerHTML = "Next Question";
+        quizzerSubmit.appendChild(nextQuestionButton);
+        buttonCreator++;
+    }
     //Starts the quiz and displays the first question
     quizContainer.innerHTML = quizData[questionCounter].question;
     answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
@@ -103,8 +119,13 @@ function nextQuestion() {
     }
     quizCallInitial();
     if (questionCounter == quizData.length - 1){
-        submitButton.innerHTML = "Submit Button";
+        submitButton.innerHTML = "Submit Quiz";
         quizzerSubmit.appendChild(submitButton);
+        nextQuestionButton.remove();
+    }
+    if (questionCounter == 1) {
+        prevQuestionButton.innerHTML = "Previous Question";
+        quizzerSubmit.appendChild(prevQuestionButton);
     }
 }
 
@@ -112,8 +133,8 @@ let trackerHelper = 0;
 let correctAnswerChoice = 0;
 let mistakes = 0;
 let checker = true;
+
 function displayRadioValue() {
-    
     const answerClass = document.querySelectorAll(".answer1");
     let answer = undefined;
     answerClass.forEach((answer1) => {
@@ -136,20 +157,15 @@ function displayRadioValue() {
     console.log(totalArray);
     
     if (totalArray.length == quizData.length && checker == true) {
-
         for (let i = 0; i<quizData.length; i++) {
             if (totalArray[i] == quizData[i].correctAnswer) {
                 correctAnswerChoice++;
-                mistakes++;
             }
-            else {
-                mistakes++;
-            }
+            mistakes++;
         }
         checker = false;
         alert("You got " + correctAnswerChoice + " correct out of " + mistakes + "!");
-        restartButton.innerHTML = "Restart Button";
-        quizzerSubmit.appendChild(restartButton);
+        document.location = "restartPage.html";
     }
 }
 
@@ -157,13 +173,17 @@ function displayRadioValue() {
 function previousQuestion() {
     if (tracker > 0) {
         tracker--;
-        console.log(checker);
     }
     if (questionCounter == quizData.length - 1) {
         submitButton.remove();
+        nextQuestionButton.innerHTML = "Next Question";
+        quizzerSubmit.appendChild(nextQuestionButton);
     }
     if (questionCounter > 0) {
         questionCounter--;
+    }
+    if (questionCounter == 0) {
+        prevQuestionButton.remove();
     }
     quizCallInitial();
 }
@@ -172,6 +192,10 @@ submitButton.addEventListener("click", () => {
     displayRadioValue();
 });
 
-restartButton.addEventListener("click", () => {
-    backToStart();
+nextQuestionButton.addEventListener("click", () => {
+    nextQuestion();
+});
+
+prevQuestionButton.addEventListener("click", () => {
+    previousQuestion();
 });

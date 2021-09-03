@@ -22,12 +22,66 @@ ul li label {
     cursor: pointer;
 }
 
+#quizCall {
+    background-color: transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+    display: block;
+    width:50%;
+    height: 40%;
+    color: black;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.submitButtonClass {
+    background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
+    /* background-color: transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;  */
+    display: inline-block;
+    width: 50%;
+    color: black;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.prevClass {
+    background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
+    display: inline-block;
+    width: 50%;
+    color: black;
+    padding: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.nextClass {
+    background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    width: 50%;
+    padding: 1rem;
+    color: black;
+    font-weight: bold;
+    font-size: 1rem;
+}
 li {
     font-size: 1.5rem;
 }
 
 .quiz {
-    background-color: white;
+    background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
     border-radius: 10px;
     width: 30%;
     min-height: 30vh;
@@ -56,13 +110,4 @@ li {
     font-weight: bold;
     margin-left: 5%;
     font-size: 2rem;
-}
-
-#nextQuestionButton {
-    float: right;
-}
-
-#previousQuestionButton {
-    float: left;
-    margin-bottom: 0;
 }
