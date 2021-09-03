@@ -90,19 +90,12 @@ function quizCallInitial() {
     console.log(questionCounter);
 }
 
-
+//Working
 function nextQuestion() {
-    
-    //goes to the next question
-    if (questionCounter < quizData.length - 1) {
+    if (questionCounter < quizData.length-1) {
         questionCounter++;
-        //Displays the question of the quiz
-        quizContainer.innerHTML = quizData[questionCounter].question;
-        answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
-        answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
-        answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
-        answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
+    quizCallInitial();
     if (questionCounter == quizData.length - 1){
         if (check) {
             submitButton.innerHTML = "Submit Button";
@@ -110,31 +103,15 @@ function nextQuestion() {
             check = false;
         }
     }
-    
-    console.log(questionCounter);
 }
+
 
 //Working
 function previousQuestion() {
-    //goes back to the previous question
-    if (questionCounter == quizData.length) {
-        //Decrements the counter
+    if (questionCounter > 0) {
         questionCounter--;
     }
-    // if (questionCounter == quizData.length - 1) {
-    //     removeButton(quizzerSubmit);
-    // }
-    if (questionCounter < quizData.length && questionCounter > 0) {
-        //Decrements the counter
-        questionCounter--;
-        //Returns the previous question
-        quizContainer.innerHTML = quizData[questionCounter].question;
-        answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
-        answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
-        answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
-        answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
-        console.log(questionCounter);
-    }
+    quizCallInitial();
 }
 
 function submit() {
