@@ -68,14 +68,14 @@ ul li label {
 .nextClass {
     background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
     cursor: pointer;
-    display: inline-block;
-    /* float: right; */
+    float: right;
     width: 50%;
     padding: 1rem;
     color: black;
     font-weight: bold;
     font-size: 1rem;
 }
+
 li {
     font-size: 1.5rem;
 }
