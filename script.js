@@ -105,6 +105,15 @@ function nextQuestion() {
     }
 }
 
+function displayRadioValue() {
+    var ele = document.getElementsByName('answer');
+      
+    for(i = 0; i < ele.length; i++) {
+        if(ele[i].checked)
+        document.getElementById("quizzer").innerHTML
+                = "Answer: "+ele[i].value;
+    }
+}
 
 //Working
 function previousQuestion() {
@@ -114,10 +123,7 @@ function previousQuestion() {
     quizCallInitial();
 }
 
-function submit() {
-    //submit the quiz using this
-    
-}
+submitButton.onclick = function() {displayRadioValue()};
 
 function returnGrade() {
     //Returns the results of the quiz
