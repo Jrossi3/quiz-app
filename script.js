@@ -4,7 +4,10 @@ var answerChoiceA = document.getElementById('a');
 var answerChoiceB = document.getElementById('b');
 var answerChoiceC = document.getElementById('c');
 var answerChoiceD = document.getElementById('d');
+var quizzerSubmit = document.getElementById('quizzer');
+var submitButton = document.createElement("BUTTON");
 var questionCounter = 0;
+var check = true;
 
 const quizData = [
     {
@@ -59,13 +62,6 @@ const quizData = [
     }
 ];
 
-// submitButton.innerHTML;
-// document.body.appendChild(submitButton);
-// previousQuestionButton.innerHTML = "Previous Question";
-// quizClass.appendChild(previousQuestionButton);
-// nextQuestionButton.innerHTML = "Next Question";
-// quizClass.appendChild(nextQuestionButton);
-
 function quizCall() {
     //Starts the quiz and displays the first question
     document.location='quizQuestions.html';
@@ -73,8 +69,8 @@ function quizCall() {
     console.log(questionCounter);
 }
 
-function removeButton() {
-    var element = document.getElementById('nextQuestionButton');
+function removeButton(h) {
+    var element = document.getElementById(h);
     element.parentNode.removeChild(element);
 }
 
@@ -91,15 +87,14 @@ function quizCallInitial() {
     answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
     answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
     answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
-    questionCounter++;
     console.log(questionCounter);
 }
 
-//Working
+
 function nextQuestion() {
     
     //goes to the next question
-    if (questionCounter < quizData.length) {
+    if (questionCounter < quizData.length - 1) {
         questionCounter++;
         //Displays the question of the quiz
         quizContainer.innerHTML = quizData[questionCounter].question;
@@ -108,9 +103,14 @@ function nextQuestion() {
         answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
         answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
     }
-    // if (questionCounter == quizData.length - 1) {
-    //     removeButton(nextQuestionButton);
-    // }
+    if (questionCounter == quizData.length - 1){
+        if (check) {
+            submitButton.innerHTML = "Submit Button";
+            quizzerSubmit.appendChild(submitButton);
+            check = false;
+        }
+    }
+    
     console.log(questionCounter);
 }
 
@@ -121,6 +121,9 @@ function previousQuestion() {
         //Decrements the counter
         questionCounter--;
     }
+    // if (questionCounter == quizData.length - 1) {
+    //     removeButton(quizzerSubmit);
+    // }
     if (questionCounter < quizData.length && questionCounter > 0) {
         //Decrements the counter
         questionCounter--;
@@ -136,9 +139,7 @@ function previousQuestion() {
 
 function submit() {
     //submit the quiz using this
-    if (questionCounter == quizData.length) {
-        
-    }
+    
 }
 
 function returnGrade() {
