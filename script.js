@@ -1,12 +1,15 @@
 var quizContainer = document.getElementById('quizQuestions');
+var results = document.getElementById('resultsContainer');
 var quizCallElement = document.getElementById('quizCall');
-var answerChoiceA = document.getElementById('a');
-var answerChoiceB = document.getElementById('b');
-var answerChoiceC = document.getElementById('c');
-var answerChoiceD = document.getElementById('d');
+var answerChoiceA = document.getElementById('a1');
+var answerChoiceB = document.getElementById('b1');
+var answerChoiceC = document.getElementById('c1');
+var answerChoiceD = document.getElementById('d1');
 var quizzerSubmit = document.getElementById('quizzer');
 var submitButton = document.createElement("BUTTON");
+var restartButton = document.createElement("BUTTON");
 var questionCounter = 0;
+let totalArray = [];
 var check = true;
 
 const quizData = [
@@ -87,44 +90,88 @@ function quizCallInitial() {
     answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
     answerChoiceC.innerHTML = quizData[questionCounter].answerChoices.c;
     answerChoiceD.innerHTML = quizData[questionCounter].answerChoices.d;
-    console.log(questionCounter);
+    // console.log(questionCounter);
 }
+
+let tracker = 0;
 
 //Working
 function nextQuestion() {
     if (questionCounter < quizData.length-1) {
         questionCounter++;
+        displayRadioValue();
     }
     quizCallInitial();
     if (questionCounter == quizData.length - 1){
-        if (check) {
-            submitButton.innerHTML = "Submit Button";
-            quizzerSubmit.appendChild(submitButton);
-            check = false;
-        }
+        submitButton.innerHTML = "Submit Button";
+        quizzerSubmit.appendChild(submitButton);
     }
 }
 
+let trackerHelper = 0;
+let correctAnswerChoice = 0;
+let mistakes = 0;
+let checker = true;
 function displayRadioValue() {
-    var ele = document.getElementsByName('answer');
-      
-    for(i = 0; i < ele.length; i++) {
-        if(ele[i].checked)
-        document.getElementById("quizzer").innerHTML
-                = "Answer: "+ele[i].value;
+    
+    const answerClass = document.querySelectorAll(".answer1");
+    let answer = undefined;
+    answerClass.forEach((answer1) => {
+        if (answer1.checked) {
+            answer = answer1.id;
+            if (tracker < quizData.length && totalArray.length <= quizData.length) {
+                totalArray[tracker] = answer;
+                tracker++;
+                trackerHelper++;
+            }
+        }
+    });
+    if (trackerHelper == 0 && totalArray.length <= quizData.length - 1){
+        totalArray[tracker] = 0;
+        tracker++;
+    }
+    if (trackerHelper > 0) {
+        trackerHelper--;
+    }
+    console.log(totalArray);
+    
+    if (totalArray.length == quizData.length && checker == true) {
+
+        for (let i = 0; i<quizData.length; i++) {
+            if (totalArray[i] == quizData[i].correctAnswer) {
+                correctAnswerChoice++;
+                mistakes++;
+            }
+            else {
+                mistakes++;
+            }
+        }
+        checker = false;
+        alert("You got " + correctAnswerChoice + " correct out of " + mistakes + "!");
+        restartButton.innerHTML = "Restart Button";
+        quizzerSubmit.appendChild(restartButton);
     }
 }
 
 //Working
 function previousQuestion() {
+    if (tracker > 0) {
+        tracker--;
+        console.log(checker);
+    }
+    if (questionCounter == quizData.length - 1) {
+        submitButton.remove();
+    }
     if (questionCounter > 0) {
         questionCounter--;
     }
     quizCallInitial();
 }
 
-submitButton.onclick = function() {displayRadioValue()};
+submitButton.addEventListener("click", () => {
+    displayRadioValue();
+});
 
-function returnGrade() {
-    //Returns the results of the quiz
-}
+restartButton.addEventListener("click", () => {
+    backToStart();
+});
