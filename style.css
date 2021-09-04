@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-@media (max-width: 849px) {
+@media (max-width: 649px) {
     body {
         background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 40%, rgb(104, 96, 179));
         background-attachment: fixed;
@@ -44,13 +44,16 @@
         border: none;
         cursor:pointer;
         overflow: hidden;  */
-        display: inline-block;
-        width: 50%;
-        color: black;
-        padding: .5rem;
-        font-weight: bold;
         cursor: pointer;
+        float: right;
+        width: 50%;
+        padding: .5rem;
+        color: black;
+        font-weight: bold;
         font-size: .5rem;
+        position: absolute;
+        margin-left: 50%;
+        bottom: 0;
     }
 
     .prevClass {
@@ -62,6 +65,8 @@
         color: black;
         font-weight: bold;
         font-size: .5rem;
+        position: absolute;
+        bottom: 0;
     }
 
     .nextClass {
@@ -73,6 +78,9 @@
         color: black;
         font-weight: bold;
         font-size: .5rem;
+        position: absolute;
+        margin-left: 50%;
+        bottom: 0;
     }
 
     li {
@@ -82,7 +90,8 @@
     .quiz {
         background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
         border-radius: 10px;
-        width: 50%;
+        width: 80%;
+        height: 80%;
         min-height: 20vh;
         position: relative;
         margin: 0;
@@ -111,7 +120,7 @@
     }
 }
 
-@media (min-width: 850px) {
+@media (min-width: 650px) {
 
     body {
         background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 40%, rgb(104, 96, 179));
