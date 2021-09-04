@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-@media (max-width: 649px) {
+@media (max-width: 749px) {
     body {
         background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 40%, rgb(104, 96, 179));
         background-attachment: fixed;
@@ -120,7 +120,7 @@
     }
 }
 
-@media (min-width: 650px) {
+@media (min-width: 750px) {
 
     body {
         background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 40%, rgb(104, 96, 179));
