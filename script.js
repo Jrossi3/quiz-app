@@ -1,3 +1,4 @@
+const answerClass = document.querySelectorAll(".answerClass");
 var quizContainer = document.getElementById('quizQuestions');
 var results = document.getElementById('resultsContainer');
 var quizCallElement = document.getElementById('quizCall');
@@ -10,12 +11,17 @@ var submitButton = document.createElement("BUTTON");
 var restartButton = document.createElement("BUTTON");
 var nextQuestionButton = document.createElement("BUTTON");
 var prevQuestionButton = document.createElement("BUTTON");
+var questionCounter = 0;
+let totalArray = [];
+let trackerHelper = 0;
+let correctAnswerChoice = 0;
+let mistakes = 0;
+let checker = true;
+let buttonCreator = 0;
+let tracker = 0;
 submitButton.className = "submitButtonClass";
 nextQuestionButton.className = "nextClass";
 prevQuestionButton.className = "prevClass";
-var questionCounter = 0;
-let totalArray = [];
-var check = true;
 
 const quizData = [
     {
@@ -70,6 +76,12 @@ const quizData = [
     }
 ];
 
+function deSelector() {
+    answerClass.forEach((answer1) => {
+        answer1.checked = false;
+    })
+}
+
 function quizCall() {
     //Starts the quiz and displays the first question
     document.location='quizQuestions.html';
@@ -81,8 +93,6 @@ function removeButton(h) {
     element.parentNode.removeChild(element);
 }
 
-let buttonCreator = 0;
-
 quizCallInitial();
 
 function backToStart() {
@@ -93,14 +103,15 @@ function quizCallInitial() {
     if (buttonCreator == 1) {
         prevQuestionButton.innerHTML = "Previous Question";
         quizzerSubmit.appendChild(prevQuestionButton);
-        buttonCreator++;
+        buttonCreator = 2;
     }
     if (buttonCreator == 0) {
         nextQuestionButton.innerHTML = "Next Question";
         quizzerSubmit.appendChild(nextQuestionButton);
-        buttonCreator++;
+        buttonCreator = 1;
     }
     //Starts the quiz and displays the first question
+    deSelector();
     quizContainer.innerHTML = quizData[questionCounter].question;
     answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
     answerChoiceB.innerHTML = quizData[questionCounter].answerChoices.b;
@@ -109,10 +120,9 @@ function quizCallInitial() {
     // console.log(questionCounter);
 }
 
-let tracker = 0;
-
 //Working
 function nextQuestion() {
+    
     if (questionCounter < quizData.length-1) {
         questionCounter++;
         displayRadioValue();
@@ -129,13 +139,7 @@ function nextQuestion() {
     }
 }
 
-let trackerHelper = 0;
-let correctAnswerChoice = 0;
-let mistakes = 0;
-let checker = true;
-
 function displayRadioValue() {
-    const answerClass = document.querySelectorAll(".answer1");
     let answer = undefined;
     answerClass.forEach((answer1) => {
         if (answer1.checked) {
@@ -171,6 +175,7 @@ function displayRadioValue() {
 
 //Working
 function previousQuestion() {
+    
     if (tracker > 0) {
         tracker--;
     }
