@@ -27,7 +27,7 @@
     #quizCall {
         background-color: transparent;
         border: none;
-        cursor:pointer;
+        cursor: pointer;
         width: 60%;
         height: 50%;
         color: black;
@@ -133,7 +133,7 @@
     #quizCall {
         background-color: transparent;
         border: none;
-        cursor:pointer;
+        cursor: pointer;
         width: 60%;
         height: 50%;
         color: black;
@@ -267,7 +267,6 @@
 
     .prevClass {
         background-image: linear-gradient(300deg, rgba(228, 102, 64, 0.753), 50%, rgb(104, 96, 179));
-        display: inline-block;
         width: 50%;
         color: black;
         padding: 1rem;
