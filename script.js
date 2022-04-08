@@ -42,7 +42,7 @@ const quizData = [
             c: '20', 
             d: '19', 
         },
-        correctAnswer: 'c'
+        correctAnswer: 'b'
     },
     {
         question: "What is my birthday", 
