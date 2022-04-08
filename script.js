@@ -13,12 +13,10 @@ var nextQuestionButton = document.createElement("BUTTON");
 var prevQuestionButton = document.createElement("BUTTON");
 var questionCounter = 0;
 let totalArray = [];
-let trackerHelper = 0;
 let correctAnswerChoice = 0;
 let mistakes = 0;
 let checker = true;
 let buttonCreator = 0;
-let tracker = 0;
 submitButton.className = "submitButtonClass";
 nextQuestionButton.className = "nextClass";
 prevQuestionButton.className = "prevClass";
@@ -104,13 +102,12 @@ function quizCallInitial() {
         prevQuestionButton.innerHTML = "Previous Question";
         quizzerSubmit.appendChild(prevQuestionButton);
         buttonCreator = 2;
-    }
-    if (buttonCreator == 0) {
+    } else if (buttonCreator == 0) {
         nextQuestionButton.innerHTML = "Next Question";
         quizzerSubmit.appendChild(nextQuestionButton);
         buttonCreator = 1;
     }
-    //Starts the quiz and displays the first question
+    // Starts the quiz and displays the first question
     deSelector();
     quizContainer.innerHTML = quizData[questionCounter].question;
     answerChoiceA.innerHTML = quizData[questionCounter].answerChoices.a;
@@ -123,20 +120,23 @@ function quizCallInitial() {
 //Working
 function nextQuestion() {
     
+    console.log(questionCounter)
+
     if (questionCounter < quizData.length-1) {
-        questionCounter++;
         displayRadioValue();
+        questionCounter++;
     }
-    quizCallInitial();
     if (questionCounter == quizData.length - 1){
         submitButton.innerHTML = "Submit Quiz";
         quizzerSubmit.appendChild(submitButton);
         nextQuestionButton.remove();
-    }
-    if (questionCounter == 1) {
+    } else if (questionCounter == 1) {
         prevQuestionButton.innerHTML = "Previous Question";
         quizzerSubmit.appendChild(prevQuestionButton);
     }
+    quizCallInitial();
+    keepAnswer();
+    // console.log(totalArray)
 }
 
 function displayRadioValue() {
@@ -144,22 +144,60 @@ function displayRadioValue() {
     answerClass.forEach((answer1) => {
         if (answer1.checked) {
             answer = answer1.id;
-            if (tracker < quizData.length && totalArray.length <= quizData.length) {
-                totalArray[tracker] = answer;
-                tracker++;
-                trackerHelper++;
+            if (totalArray.length <= quizData.length) {
+                totalArray[questionCounter] = answer;
             }
         }
     });
-    if (trackerHelper == 0 && totalArray.length <= quizData.length - 1){
-        totalArray[tracker] = 0;
-        tracker++;
-    }
-    if (trackerHelper > 0) {
-        trackerHelper--;
+    if (totalArray.length <= quizData.length - 1){
+        if (!totalArray[questionCounter]){
+            totalArray[questionCounter] = 0;
+        } 
     }
     console.log(totalArray);
     
+
+}
+
+//Working
+function previousQuestion() {
+    if (questionCounter == quizData.length - 1) {
+        submitButton.remove();
+        nextQuestionButton.innerHTML = "Next Question";
+        quizzerSubmit.appendChild(nextQuestionButton);
+    } 
+    if (questionCounter > 0) {
+        displayRadioValue();
+        questionCounter--;
+    } 
+    if (questionCounter == 0) {
+        prevQuestionButton.remove();
+    }
+    // console.log(questionCounter)
+    
+    quizCallInitial();
+    keepAnswer();
+    // deSelector();
+}
+
+function keepAnswer(){
+    
+    let answer = undefined;
+    if (totalArray.length > 0){
+        answerClass.forEach((answer1) => {
+            if (answer1.id == totalArray[questionCounter]) {
+                answer1.checked = true
+            }
+    });
+}
+}
+
+submitButton.addEventListener("click", () => {
+    if (totalArray.length <= quizData.length - 1){
+        if (!totalArray[questionCounter]){
+            totalArray[questionCounter] = 0;
+        } 
+    }
     if (totalArray.length == quizData.length && checker == true) {
         for (let i = 0; i<quizData.length; i++) {
             if (totalArray[i] == quizData[i].correctAnswer) {
@@ -171,30 +209,6 @@ function displayRadioValue() {
         alert("You got " + correctAnswerChoice + " correct out of " + mistakes + "!");
         document.location = "restartPage.html";
     }
-}
-
-//Working
-function previousQuestion() {
-    
-    if (tracker > 0) {
-        tracker--;
-    }
-    if (questionCounter == quizData.length - 1) {
-        submitButton.remove();
-        nextQuestionButton.innerHTML = "Next Question";
-        quizzerSubmit.appendChild(nextQuestionButton);
-    }
-    if (questionCounter > 0) {
-        questionCounter--;
-    }
-    if (questionCounter == 0) {
-        prevQuestionButton.remove();
-    }
-    quizCallInitial();
-}
-
-submitButton.addEventListener("click", () => {
-    displayRadioValue();
 });
 
 nextQuestionButton.addEventListener("click", () => {
